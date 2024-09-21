@@ -1,3 +1,3 @@
 public interface iDPS <E extends Character>{
-    public void attack(E target);
+    public void attack(E target, int actionNumber);
 }

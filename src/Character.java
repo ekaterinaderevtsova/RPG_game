@@ -35,14 +35,6 @@ public abstract class Character {
         this.level++;
     }
 
-    public void diminishHealth(double damagePercentage) {
-        if (damagePercentage >= currentHealth) {
-//            throw new CharacterKilled();
-        } else {
-            this.currentHealth -= damagePercentage;
-        }
-    }
-
     public void increaseHealth(int increasePercentage) {
         double increasedHealth = currentHealth + (currentHealth * increasePercentage / 100);
         if (increasedHealth > maxHealth) {
@@ -52,10 +44,21 @@ public abstract class Character {
         }
     }
 
+    public void decreaseHealth(int decreasePercentage) {
+        double decreasedHealth = currentHealth - (currentHealth * decreasePercentage / 100);
+        if (decreasedHealth <= 0) {
+//            throw new CharacterKilled("The character was killed.");
+        } else {
+            currentHealth = decreasedHealth;
+        }
+    }
+
     public void increaseMaxHealth(double increase){
         this.maxHealth+= increase;
         this.currentHealth = this.maxHealth;
     }
+
+    abstract void displayActions();
 
     @Override
     public String toString() {
